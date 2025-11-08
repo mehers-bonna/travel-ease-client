@@ -8,4 +8,7 @@
   default: true;
   --color-primary: blue;
   --color-secondary: teal;
+    --color-error-content: oklch(98% 0.01 30);
+
+
 }
