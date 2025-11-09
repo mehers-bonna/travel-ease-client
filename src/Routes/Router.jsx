@@ -5,6 +5,9 @@ import AllVehicles from './../pages/All Vehicles/AllVehicles';
 import AddVehicles from './../pages/Add Vehicles/AddVehicles';
 import MyVehicles from './../pages/My Vehicles/MyVehicles';
 import MyBookings from './../pages/My Bookings/MyBookings';
+import AuthLayout from "../Layouts/AuthLayout";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 
 
 
@@ -34,5 +37,31 @@ export const router = createBrowserRouter([
                 element:<MyBookings></MyBookings>,
             }
         ]
-    }
+    },
+    {
+        path: '/auth',
+        element: <AuthLayout></AuthLayout>,
+        children: [
+            {
+                path: 'login',
+                element: <Login></Login>,
+            },
+            {
+                path: 'register',
+                element: <Register></Register>,
+            },
+            // {
+            //     path: 'myProfile',
+            //     Component: MyProfile,
+            // },
+            // {
+            //     path: 'updateProfile',
+            //     element:
+            // },
+            // {
+            //     path: 'forgetPassword',
+            //     Component: ForgetPassword,
+            // },
+        ],
+    },
 ])

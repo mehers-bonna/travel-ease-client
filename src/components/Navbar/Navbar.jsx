@@ -7,23 +7,20 @@ import travelLogo from '../../assets/travelLogo.jpg';
 
 const Navbar = () => {
 
-    // const { user, logOut } = use(AuthContext);
-    // const navigate = useNavigate();
-    // const handleLogOut = () => {
-    //     console.log("user trying to log out")
-    //     logOut()
-    //         .then(() => {
-    //             toast.success("You logged out successfully.");
-    //             navigate("/");
-    //         }).catch((error) => {
-    //             toast.error(error.message)
-    //         });
-    // }
+    const { user, signOutUser } = use(AuthContext);
+    const navigate = useNavigate();
+    const handleLogOut = () => {
+        console.log("user trying to log out")
+        signOutUser()
+            .then(() => {
+                toast.success("You logged out successfully.");
+                navigate("/");
+            }).catch((error) => {
+                toast.error(error.message)
+            });
+    }
 
 
-    // const handleProfileClick = () => {
-    //     navigate('/myProfile');
-    // };
     return (
         <div>
             <div className="navbar bg-base-100 shadow-sm">
@@ -57,23 +54,25 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end space-x-2">
-                        <Link to='/auth/login'
-                            className="btn btn-error text-white"> Login</Link>
-                            <Link to='/auth/register'
-                                className="btn btn-error text-white"> Register</Link>
-                        {/* {user ? <button onClick={handleLogOut} className="btn bg-[#9F62F2] text-white">Log Out</button> : <Link to='/auth/login'
-                            className="btn bg-[#9F62F2] text-white"> Login</Link>}
+                        {user ? <button onClick={handleLogOut} className="btn bg-error text-white">Log Out</button> : <Link to='/auth/login'
+                            className="btn bg-error text-white"> Login</Link>}
 
                         {
-                            user ? <Link to='/auth/myProfile'><img onClick={handleProfileClick} className='w-10 h-10 rounded-full' src={user ? user.photoURL : profile} alt="" /></Link> : <Link to='/auth/register'
-                                className="btn bg-[#9F62F2] text-white"> Register</Link>
-                        } */}
+                            user ? <Link to='/auth/myProfile'>
+                                <img
+                                className='w-10 h-10 rounded-full' 
+                                src={user?.photoURL || profile} 
+                                alt={user?.displayName || "Profile"} />
+                                </Link> : 
+                                <Link to='/auth/register'
+                                className="btn bg-error text-white"> Register</Link>
+                        }
 
 
                     </div>
                 </div>
             </div>
-            {/* <div>{user && user.email}</div> */}
+            <div>{user && user.email}</div>
         </div>
     );
 };
