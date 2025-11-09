@@ -46,7 +46,8 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute>
                     <ViewDetails></ViewDetails>
                 </PrivateRoute>,
-            }
+                loader: ({params}) => fetch(`http://localhost:3000/travels/${params.id}`),
+            },
         ]
     },
     {
