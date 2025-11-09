@@ -8,6 +8,8 @@ import MyBookings from './../pages/My Bookings/MyBookings';
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import ViewDetails from "../pages/View Details/ViewDetails";
+import PrivateRoute from './../Private Route/PrivateRoute';
 
 
 
@@ -27,7 +29,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/addVehicles",
-                element:<AddVehicles></AddVehicles>,
+                element:<PrivateRoute>
+                    <AddVehicles></AddVehicles>
+                </PrivateRoute>,
             },
             {
                 path: "/myVehicles",
@@ -36,6 +40,12 @@ export const router = createBrowserRouter([
             {
                 path: "/myBookings",
                 element:<MyBookings></MyBookings>,
+            },
+            {
+                path: "/viewDetails/:id",
+                element:<PrivateRoute>
+                    <ViewDetails></ViewDetails>
+                </PrivateRoute>,
             }
         ]
     },
