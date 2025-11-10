@@ -13,6 +13,7 @@ import PrivateRoute from './../Private Route/PrivateRoute';
 import UpdateVehicle from "../pages/Update Vehicle/UpdateVehicle";
 import FeaturedOwner from "../pages/Featured Owner/FeaturedOwner";
 import AboutTravelEase from "../pages/About TravelEase/AboutTravelEase";
+import ErrorPage from "../pages/Error Page/ErrorPage";
 
 
 
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
             {
                 path: "/aboutTravelEase",
                 element: <AboutTravelEase></AboutTravelEase>,
+            },
+             {
+                path: "*",
+                element: <ErrorPage></ErrorPage>,
             },
         ]
     },
