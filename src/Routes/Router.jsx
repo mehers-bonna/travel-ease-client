@@ -11,6 +11,8 @@ import Register from "../pages/Register/Register";
 import ViewDetails from "../pages/View Details/ViewDetails";
 import PrivateRoute from './../Private Route/PrivateRoute';
 import UpdateVehicle from "../pages/Update Vehicle/UpdateVehicle";
+import FeaturedOwner from "../pages/Featured Owner/FeaturedOwner";
+import AboutTravelEase from "../pages/About TravelEase/AboutTravelEase";
 
 
 
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
                     <UpdateVehicle></UpdateVehicle>
                 </PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:3000/travels/${params.id}`),
+            },
+            {
+                path: "/featuredOwner",
+                element: <FeaturedOwner></FeaturedOwner>,
+            },
+            {
+                path: "/aboutTravelEase",
+                element: <AboutTravelEase></AboutTravelEase>,
             },
         ]
     },

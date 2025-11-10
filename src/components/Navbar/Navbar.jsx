@@ -46,11 +46,76 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="flex gap-4 text-sm ">
-                            <li><NavLink className="hover:underline hover:text-[#632EE3]" to='/'>Home</NavLink></li>
-                            <li><NavLink className="hover:underline hover:text-[#632EE3]" to='/allVehicles'>All Vehicles</NavLink></li>
-                            <li><NavLink className="hover:underline hover:text-[#632EE3]" to='/addVehicles'>Add Vehicles</NavLink></li>
-                            <li><NavLink className="hover:underline hover:text-[#632EE3]" to='/myVehicles'>My Vehicles</NavLink></li>
-                            <li><NavLink className="hover:underline hover:text-[#632EE3]" to='/myBookings'>My Bookings</NavLink></li>
+                            <li>
+                                <NavLink
+                                    to='/'
+                                    className={({ isActive }) =>
+                                        isActive ? "underline text-error" : "hover:underline hover:text-error"
+                                    }
+                                >
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to='/allVehicles'
+                                    className={({ isActive }) =>
+                                        isActive ? "underline text-error" : "hover:underline hover:text-error"
+                                    }
+                                >
+                                    All Vehicles
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to='/addVehicles'
+                                    className={({ isActive }) =>
+                                        isActive ? "underline text-error" : "hover:underline hover:text-error"
+                                    }
+                                >
+                                    Add Vehicles
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to='/myVehicles'
+                                    className={({ isActive }) =>
+                                        isActive ? "underline text-error" : "hover:underline hover:text-error"
+                                    }
+                                >
+                                    My Vehicles
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to='/myBookings'
+                                    className={({ isActive }) =>
+                                        isActive ? "underline text-error" : "hover:underline hover:text-error"
+                                    }
+                                >
+                                    My Bookings
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to='/featuredOwner'
+                                    className={({ isActive }) =>
+                                        isActive ? "underline text-error" : "hover:underline hover:text-error"
+                                    }
+                                >
+                                    Featured Owner
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to='/aboutTravelEase'
+                                    className={({ isActive }) =>
+                                        isActive ? "underline text-error" : "hover:underline hover:text-error"
+                                    }
+                                >
+                                    About TravelEase
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
                     <div className="navbar-end space-x-2">
@@ -60,12 +125,12 @@ const Navbar = () => {
                         {
                             user ? <Link to='/auth/myProfile'>
                                 <img
-                                className='w-10 h-10 rounded-full' 
-                                src={user?.photoURL || profile} 
-                                alt={user?.displayName || "Profile"} />
-                                </Link> : 
+                                    className='w-10 h-10 rounded-full'
+                                    src={user?.photoURL || profile}
+                                    alt={user?.displayName || "Profile"} />
+                            </Link> :
                                 <Link to='/auth/register'
-                                className="btn bg-error text-white"> Register</Link>
+                                    className="btn bg-error text-white"> Register</Link>
                         }
 
 
