@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const VehicleCard = ({vehicle}) => {
      const {vehicleName, coverImage, category, description, _id, owner, pricePerDay} = vehicle
     return (
-     <div className="card w-9/12 mx-auto my-10 bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+     <div className="card w-full my-10 bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
       <figure className="h-48 overflow-hidden">
         <img
           src={coverImage}

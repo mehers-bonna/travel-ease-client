@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router';
 
 const AddVehicles = () => {
 
@@ -80,14 +81,14 @@ const AddVehicles = () => {
               <option value="" disabled>
                 Select category
               </option>
-              <option value="Vehicles">Yamaha Bike</option>
-              <option value="Plants">Honda Bike</option>
-              <option value="Foods">Phoenix Bicycle</option>
-              <option value="Home & Living">Bajaj CNG</option>
-              <option value="Characters">Toyota HiAce Bus</option>
-              <option value="Space">Mini Bus</option>
-              <option value="Animals">Toyota Corolla</option>
-              <option value="Other">Isuzu Truck</option>
+              <option value="Yamaha Bike">Yamaha Bike</option>
+              <option value="Honda Bike">Honda Bike</option>
+              <option value="Phoenix Bicycle">Phoenix Bicycle</option>
+              <option value="Helicopter">Helicopter</option>
+              <option value="Toyota HiAce Bus">Toyota HiAce Bus</option>
+              <option value="Mini Bus">Mini Bus</option>
+              <option value="Toyota Corolla">Toyota Corolla</option>
+              <option value="Isuzu Truck">Isuzu Truck</option>
             </select>
           </div>
 
@@ -170,12 +171,12 @@ const AddVehicles = () => {
           </div>
 
           {/* Submit Button */}
-          <button
+          <Link to='/'
             type="submit"
             className="btn w-full text-white mt-6 rounded-full bg-error hover:bg-pink-600"
           >
             Add Vehicle
-          </button>
+          </Link>
         </form>
       </div>
     </div>

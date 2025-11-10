@@ -52,7 +52,7 @@ const ViewDetails = () => {
               <button
                 className="btn btn-primary rounded-full bg-error text-white border-0 hover:bg-pink-600"
               >
-                Delete
+                Book Now
               </button>
             </div>
           </div>

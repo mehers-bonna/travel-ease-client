@@ -31,7 +31,7 @@ const AllVehicles = () => {
 
     return (
         <div>
-            <div className="text-2xl text-center font-bold"> All Vehicles</div>
+            <div className="text-error text-2xl text-center font-bold"> All Vehicles</div>
             <p className=" text-center ">Explore Your Vehicle.</p>
 
 
@@ -49,7 +49,7 @@ const AllVehicles = () => {
 
 
 
-            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 '>
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 w-10/12 mx-auto'>
                 {displayData.map(vehicle => <VehicleCard key={vehicle._id}  vehicle={vehicle}></VehicleCard>)}
             </div>
         </div>
