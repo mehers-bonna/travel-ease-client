@@ -18,6 +18,7 @@ const UpdateVehicle = () => {
           description: e.target.description.value,
           pricePerDay: e.target.pricePerDay.value,
           coverImage: e.target.coverImage.value,
+          availability: e.target.availability.value,
           
           
         }
@@ -70,6 +71,23 @@ const UpdateVehicle = () => {
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Enter category"
             />
+          </div>
+
+          {/* availability */}
+          <div>
+            <label className="label font-medium">Availability</label>
+            <select
+              defaultValue={""}
+              name="availability"
+              required
+              className="select w-full rounded-full focus:border-0 focus:outline-gray-200"
+            >
+              <option value="" disabled>
+                Select availability
+              </option>
+              <option value="Available">Available</option>
+              <option value="Booked">Booked</option>
+            </select>
           </div>
 
           {/* Description */}

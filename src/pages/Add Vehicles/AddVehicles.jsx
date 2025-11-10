@@ -118,8 +118,8 @@ const AddVehicles = () => {
               <option value="" disabled>
                 Select availability
               </option>
-              <option value="Vehicles">Available</option>
-              <option value="Plants">Booked</option>
+              <option value="Available">Available</option>
+              <option value="Booked">Booked</option>
             </select>
           </div>
           {/* Description Textarea */}

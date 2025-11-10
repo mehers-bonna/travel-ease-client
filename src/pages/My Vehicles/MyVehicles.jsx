@@ -64,23 +64,23 @@ const MyVehicles = () => {
             {vehicles.map(vehicle => (
                 <div
                     key={vehicle._id}
-                    className="flex items-center justify-between p-4 bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 rounded-xl w-10/12 mx-auto my-4"
+                    className="flex flex-col md:flex-row items-center md:items-center  justify-between p-4 bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 rounded-xl w-11/12 mx-auto my-4"
                 >
                     {/* Left side Image */}
-                    <div className="flex items-center">
+                    <div className="flex items-center justify-center mb-4 md:mb-0">
                         <img
                             src={vehicle.coverImage}
                             alt={vehicle.vehicleName}
-                            className="w-24 h-24 object-cover rounded-lg mr-4"
+                            className="w-24 h-24 md:w-24 md:h-24 object-cover rounded-lg mr-4"
                         />
-                        <div>
+                        <div className='flex flex-col items-center'>
                             <h2 className="text-lg font-semibold">{vehicle.vehicleName}</h2>
-                            <p className="text-error">{vehicle.owner}</p>
+                            <p className="text-error"><span className='text-black font-bold'>Owner Name: </span>{vehicle.owner}</p>
                         </div>
                     </div>
 
                     {/* Right side Button */}
-                    <div className="flex space-x-2">
+                    <div className="flex flex-col md:flex-row justify-center md:justify-end items-center md:items-start space-y-2 md:space-y-0 md:space-x-2">
                         <Link to={`/viewDetails/${vehicle._id}`} className="px-3 py-1 bg-error text-white rounded-full hover:bg-pink-600">
                             View Details
                         </Link>
