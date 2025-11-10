@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router';
+import Spinner from '../../components/Spinner/Spinner';
 
 const AddVehicles = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setLoading(true);
 
     const formData = {
       vehicleName: e.target.vehicleName.value,
@@ -40,9 +43,15 @@ const AddVehicles = () => {
     .catch(err => {
         console.log(err)
     })
+    .finally(() => {
+        setLoading(false);
+      });
+    
 
-   
 
+  }
+  if (loading) {
+    return <Spinner />;
   }
     return (
         <div className="card border border-gray-200 bg-base-100 w-50% max-w-md mx-auto shadow-2xl rounded-2xl my-5">

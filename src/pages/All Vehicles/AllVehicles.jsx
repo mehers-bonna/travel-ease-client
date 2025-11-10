@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import VehicleCard from '../../components/Vehicle Card/VehicleCard';
+import Spinner from '../../components/Spinner/Spinner';
 
 const AllVehicles = () => {
 
     const data = useLoaderData()
-    console.log(data)
+    const [loading, setLoading] = useState(true);
+    // console.log(data)
 
      const [sortOrder, setSortOrder] = useState('default');
     const [displayData, setDisplayData] = useState([]);
@@ -18,6 +20,8 @@ const AllVehicles = () => {
     };
 
     useEffect(() => {
+        setLoading(true);
+
         let newData = [...data];
         if (sortOrder === 'asc') {
             newData.sort((a, b) => a.pricePerDay - b.pricePerDay);
@@ -27,7 +31,16 @@ const AllVehicles = () => {
             newData = shuffleArray(newData); 
         }
         setDisplayData(newData);
+
+        setTimeout(() => {
+            setDisplayData(newData);
+            setLoading(false);
+            }, 300); 
     }, [sortOrder, data]);
+
+    if (loading) {
+        return <Spinner />;
+    }
 
     return (
         <div>

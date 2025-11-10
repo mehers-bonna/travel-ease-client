@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import Spinner from '../../components/Spinner/Spinner';
 
 const UpdateVehicle = () => {
 
@@ -8,9 +9,11 @@ const UpdateVehicle = () => {
   const navigate = useNavigate();
   const data = useLoaderData();
   const travel = data.result;
-  
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    setLoading(true);
 
     const formData = {
           vehicleName: e.target.vehicleName.value,
@@ -39,6 +42,13 @@ const UpdateVehicle = () => {
         .catch(err => {
             console.log(err)
         })
+        .finally(() => {
+        setLoading(false);
+      });
+  }
+
+  if (loading) {
+    return <Spinner />;
   }
 
 

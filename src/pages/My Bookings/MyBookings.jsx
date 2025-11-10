@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { Link } from 'react-router';
+import Spinner from '../../components/Spinner/Spinner';
 
 const MyBookings = () => {
     const { user } = use(AuthContext);
@@ -16,9 +17,13 @@ const MyBookings = () => {
                     setVehicles(data)
                     setLoading(false)
                 })
-        }, [])
+                .catch(err => {
+                console.log(err);
+                setLoading(false);
+            });
+        }, [user.email])
         if (loading) {
-        return <div>please wait...loading</div>
+        return <Spinner />;
         }
     return (
         <div>

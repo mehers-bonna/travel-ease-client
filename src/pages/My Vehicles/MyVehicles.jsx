@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import Spinner from '../../components/Spinner/Spinner';
 
 const MyVehicles = () => {
     const { user } = use(AuthContext);
@@ -53,10 +54,14 @@ const MyVehicles = () => {
                 setVehicles(data)
                 setLoading(false)
             })
-    }, [])
+            .catch(err => {
+                console.log(err);
+                setLoading(false);
+            });
+    }, [user.email])
 
     if (loading) {
-        return <div>please wait...loading</div>
+        return <Spinner />;
     }
     return (
         <div>
