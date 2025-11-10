@@ -21,8 +21,7 @@ const ViewDetails = () => {
 
           <div className="flex flex-col justify-center space-y-4 w-full md:w-1/2">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
-              {travel.vehicleName
-}
+              {travel.vehicleName}
             </h1>
 
             <div className="flex gap-3">
@@ -35,19 +34,22 @@ const ViewDetails = () => {
               </div>
             </div>
 
+            <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+                PricePerDay: {travel.pricePerDay}
+              </div>
+
             <p className="text-gray-600 leading-relaxed text-base md:text-lg">
               {travel.description}
             </p>
-
+            
             <div className="flex gap-3 mt-6">
               <Link
-                // to={`/update-model/${model._id}`}
+                to={`/updateVehicle/${travel._id}`}
                 className="btn btn-primary rounded-full bg-error text-white border-0 hover:bg-pink-600"
               >
-                Update Model
+                Update Vehicle
               </Link>
               <button
-                // onClick={handleDlete}
                 className="btn btn-primary rounded-full bg-error text-white border-0 hover:bg-pink-600"
               >
                 Delete

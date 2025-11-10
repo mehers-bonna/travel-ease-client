@@ -14,7 +14,7 @@ const AddVehicles = () => {
       location: e.target.location.value,
       availability: e.target.availability.value,
       description: e.target.description.value,
-      PricePerDay: e.target.PricePerDay.value,
+      pricePerDay: e.target.pricePerDay.value,
       coverImage: e.target.coverImage.value,
       userEmail: e.target.userEmail.value,
       createdAt: new Date(),
@@ -136,7 +136,7 @@ const AddVehicles = () => {
             <label className="label font-medium">PricePerDay</label>
             <input
               type="text"
-              name="PricePerDay"
+              name="pricePerDay"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Enter Price"

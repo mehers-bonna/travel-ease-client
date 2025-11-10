@@ -10,6 +10,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ViewDetails from "../pages/View Details/ViewDetails";
 import PrivateRoute from './../Private Route/PrivateRoute';
+import UpdateVehicle from "../pages/Update Vehicle/UpdateVehicle";
 
 
 
@@ -45,6 +46,13 @@ export const router = createBrowserRouter([
                 path: "/viewDetails/:id",
                 element:<PrivateRoute>
                     <ViewDetails></ViewDetails>
+                </PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:3000/travels/${params.id}`),
+            },
+            {
+                path: "/updateVehicle/:id",
+                element:<PrivateRoute>
+                    <UpdateVehicle></UpdateVehicle>
                 </PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:3000/travels/${params.id}`),
             },
