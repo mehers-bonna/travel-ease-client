@@ -1,9 +1,11 @@
 import React from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const AddVehicles = () => {
+  const navigate = useNavigate();
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -32,6 +34,7 @@ const AddVehicles = () => {
     .then(res => res.json())
     .then(data => {
         toast.success("Successfully added!")
+         navigate("/")
         console.log(data)
     })
     .catch(err => {
@@ -171,12 +174,12 @@ const AddVehicles = () => {
           </div>
 
           {/* Submit Button */}
-          <Link to='/'
+          <button
             type="submit"
             className="btn w-full text-white mt-6 rounded-full bg-error hover:bg-pink-600"
           >
             Add Vehicle
-          </Link>
+          </button>
         </form>
       </div>
     </div>
