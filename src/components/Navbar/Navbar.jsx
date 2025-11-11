@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { toast } from 'react-toastify';
@@ -8,6 +8,21 @@ import travelLogo from '../../assets/travelLogo.jpg';
 const Navbar = () => {
 
     const { user, signOutUser } = use(AuthContext);
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+
+    useEffect(() => {
+        const html = document.querySelector('html')
+        html.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
+    }, [theme])
+
+    const handleTheme = (checked) => {
+        setTheme(checked ? "dark" : "light")
+
+    }
+
+
+
     const navigate = useNavigate();
     const handleLogOut = () => {
         console.log("user trying to log out")
@@ -45,6 +60,12 @@ const Navbar = () => {
                         </div>
                         <img className='h-10 w-10 rounded-full' src={travelLogo} alt="" />
                         <Link to='/' className="text-error text-2xl font-bold ml-2">TravesEase</Link>
+                        <input
+                            type="checkbox"
+                            checked={theme === "dark"}
+                            onChange={(e) => handleTheme(e.target.checked)}
+                            className="toggle toggle-error ml-2"
+                        />
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="flex gap-4 text-sm ">
@@ -139,7 +160,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div>{user && user.email}</div>
+            {/* <div>{user && user.email}</div> */}
         </div>
     );
 };

@@ -7,11 +7,15 @@ const MyBookings = () => {
     const { user } = use(AuthContext);
     const [vehicles, setVehicles] = useState([]);
     const [loading, setLoading] = useState(true);
-    // const navigate = useNavigate();
     
     
     useEffect(() => {
-            fetch(`http://localhost:3000/myBookings?email=${user.email}`)
+            fetch(`http://localhost:3000/myBookings?email=${user.email}`, {
+                headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+            })
+                 
                 .then(res => res.json())
                 .then(data => {
                     setVehicles(data)
@@ -21,7 +25,7 @@ const MyBookings = () => {
                 console.log(err);
                 setLoading(false);
             });
-        }, [user.email])
+        }, [user])
         if (loading) {
         return <Spinner />;
         }

@@ -88,18 +88,6 @@ export const router = createBrowserRouter([
                 path: 'register',
                 element: <Register></Register>,
             },
-            // {
-            //     path: 'myProfile',
-            //     Component: MyProfile,
-            // },
-            // {
-            //     path: 'updateProfile',
-            //     element:
-            // },
-            // {
-            //     path: 'forgetPassword',
-            //     Component: ForgetPassword,
-            // },
         ],
     },
 ])

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router';
 import Spinner from '../../components/Spinner/Spinner';
 
 const AddVehicles = () => {
+  const {user} = use(AuthContext)
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -31,6 +32,7 @@ const AddVehicles = () => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${user.accessToken}`
         },
         body: JSON.stringify(formData)
     })

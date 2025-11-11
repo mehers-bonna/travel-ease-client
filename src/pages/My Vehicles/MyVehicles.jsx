@@ -62,7 +62,7 @@ const MyVehicles = () => {
                 console.log(err);
                 setLoading(false);
             });
-    }, [])
+    }, [user])
 
     if (loading) {
         return <Spinner />;

@@ -27,7 +27,7 @@ const UpdateVehicle = () => {
         setTravel(data.result);
         setLoading(false);
       });
-  }, []);
+  }, [user, id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

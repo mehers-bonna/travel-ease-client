@@ -10,23 +10,23 @@ const ViewDetails = () => {
   // const travel = data.result
   // console.log(travel)
   const navigate = useNavigate();
-  const {id} = useParams()
+  const { id } = useParams()
   const [travel, setTravel] = useState({})
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3000/travels/${id}`, {
-                    headers: {
-                        authorization: `Bearer ${user.accessToken}`
-                    }
-                })
-                .then(res => res.json())
-                .then(data => {
-                  console.log(data)
-                  setTravel(data.result)
-                  setLoading(false)
-                })
-  }, [])
+      headers: {
+        authorization: `Bearer ${user.accessToken}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        setTravel(data.result)
+        setLoading(false)
+      })
+  }, [user, id])
 
   const handleBookNow = () => {
     setLoading(true);

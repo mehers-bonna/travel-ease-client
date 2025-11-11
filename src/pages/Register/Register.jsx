@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
 
-    const { createUser, updateUserProfile, signInWithGoogle } = use(AuthContext);
+  const { createUser, updateUserProfile, signInWithGoogle } = use(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = (event) => {
