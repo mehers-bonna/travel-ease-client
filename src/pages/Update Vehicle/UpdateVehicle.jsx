@@ -1,68 +1,86 @@
-import React, { useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router';
+import React, { use, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner/Spinner';
+import { AuthContext } from '../../Context/AuthContext';
 
 const UpdateVehicle = () => {
 
-
+  const user = use(AuthContext);
   const navigate = useNavigate();
-  const data = useLoaderData();
-  const travel = data.result;
+
+
+  const { id } = useParams();
+  const [travel, setTravel] = useState({});
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+     setLoading(true);
+    fetch(`http://localhost:3000/travels/${id}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setTravel(data.result);
+        setLoading(false);
+      });
+  }, []);
+
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setLoading(true);
 
     const formData = {
-          vehicleName: e.target.vehicleName.value,
-          category: e.target.category.value,
-          description: e.target.description.value,
-          pricePerDay: e.target.pricePerDay.value,
-          coverImage: e.target.coverImage.value,
-          availability: e.target.availability.value,
-          
-          
-        }
-        
-        fetch(`http://localhost:3000/travels/${travel._id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(data => {
-            toast.success("Successfully added!")
-            navigate(`/viewDetails/${travel._id}`);
-            console.log(data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-        .finally(() => {
+      vehicleName: e.target.vehicleName.value,
+      category: e.target.category.value,
+      description: e.target.description.value,
+      pricePerDay: e.target.pricePerDay.value,
+      coverImage: e.target.coverImage.value,
+      availability: e.target.availability.value,
+    };
+
+    fetch(`http://localhost:3000/travels/${travel._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(res => res.json())
+      .then(data => {
+        toast.success("Successfully added!");
+        navigate(`/viewDetails/${travel._id}`);
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
         setLoading(false);
       });
-  }
+  };
 
   if (loading) {
     return <Spinner />;
   }
 
-
   return (
     <div className="card bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl my-5">
       <div className="card-body p-6 relative">
+
         <h2 className="text-2xl font-bold text-center mb-6">Update Vehicle</h2>
+
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/*Vehicle Name Field */}
+
+          {/* Vehicle Name */}
           <div>
             <label className="label font-medium">Vehicle Name</label>
             <input
               type="text"
-              defaultValue={travel.vehicleName}
+               defaultValue={travel?.vehicleName || ""}
               name="vehicleName"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
@@ -70,12 +88,12 @@ const UpdateVehicle = () => {
             />
           </div>
 
-          {/* Category Dropdown */}
+          {/* Category */}
           <div>
             <label className="label font-medium">Category</label>
             <input
               type="text"
-              defaultValue={travel.category}
+              defaultValue={travel?.category || ""}
               name="category"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
@@ -83,18 +101,16 @@ const UpdateVehicle = () => {
             />
           </div>
 
-          {/* availability */}
+          {/* Availability */}
           <div>
             <label className="label font-medium">Availability</label>
             <select
-              defaultValue={""}
+               defaultValue={travel?.availability || ""}
               name="availability"
               required
               className="select w-full rounded-full focus:border-0 focus:outline-gray-200"
             >
-              <option value="" disabled>
-                Select availability
-              </option>
+              <option value="" disabled>Select availability</option>
               <option value="Available">Available</option>
               <option value="Booked">Booked</option>
             </select>
@@ -104,7 +120,7 @@ const UpdateVehicle = () => {
           <div>
             <label className="label font-medium">Description</label>
             <textarea
-              defaultValue={travel.description}
+               defaultValue={travel?.description || ""}
               name="description"
               required
               rows="3"
@@ -114,12 +130,11 @@ const UpdateVehicle = () => {
           </div>
 
           {/* Price Per Day */}
-
           <div>
             <label className="label font-medium">PricePerDay</label>
             <input
               type="text"
-              defaultValue={travel.pricePerDay}
+              defaultValue={travel?.pricePerDay || ""}
               name="pricePerDay"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
@@ -127,27 +142,27 @@ const UpdateVehicle = () => {
             />
           </div>
 
-          {/* coverImage URL */}
+          {/* Cover Image URL */}
           <div>
             <label className="label font-medium">Cover Image URL</label>
             <input
               type="url"
               name="coverImage"
-              defaultValue={travel.coverImage}
+               defaultValue={travel?.coverImage || ""}
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="https://example.com/image.jpg"
             />
           </div>
 
-          {/* Submit Button */}
+          {/* Submit */}
           <button
-
             type="submit"
             className="btn w-full text-white mt-6 rounded-full bg-error hover:bg-pink-600"
           >
             Update Vehicle
           </button>
+
         </form>
       </div>
     </div>

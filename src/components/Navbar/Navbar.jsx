@@ -33,12 +33,14 @@ const Navbar = () => {
                             </div>
                             <ul
                                 tabIndex={0}
-                                className="menu menu-sm dropdown-content ">
+                                className="menu menu-sm dropdown-content bg-white">
                                 <li><NavLink to='/'>Home</NavLink></li>
                                 <li><NavLink to='/allVehicles'>All Vehicles</NavLink></li>
                                 <li><NavLink to='/addVehicles'>Add Vehicles</NavLink></li>
                                 <li><NavLink to='/myVehicles'>My Vehicles</NavLink></li>
                                 <li><NavLink to='/myBookings'>My Bookings</NavLink></li>
+                                <li><NavLink to='/featuredOwner'>Featured Owner</NavLink></li>
+                                <li><NavLink to='/aboutTravelEase'>About TravelEase</NavLink></li>
                             </ul>
                         </div>
                         <img className='h-10 w-10 rounded-full' src={travelLogo} alt="" />

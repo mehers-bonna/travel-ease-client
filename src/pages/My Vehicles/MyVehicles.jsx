@@ -48,7 +48,11 @@ const MyVehicles = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/myVehicles?email=${user.email}`)
+        fetch(`http://localhost:3000/myVehicles?email=${user.email}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setVehicles(data)
@@ -58,7 +62,7 @@ const MyVehicles = () => {
                 console.log(err);
                 setLoading(false);
             });
-    }, [user.email])
+    }, [])
 
     if (loading) {
         return <Spinner />;

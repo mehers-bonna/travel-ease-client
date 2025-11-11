@@ -55,14 +55,12 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute>
                     <ViewDetails></ViewDetails>
                 </PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:3000/travels/${params.id}`),
             },
             {
                 path: "/updateVehicle/:id",
                 element:<PrivateRoute>
                     <UpdateVehicle></UpdateVehicle>
                 </PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:3000/travels/${params.id}`),
             },
             {
                 path: "/featuredOwner",
