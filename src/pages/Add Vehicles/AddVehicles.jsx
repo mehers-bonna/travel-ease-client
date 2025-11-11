@@ -28,7 +28,7 @@ const AddVehicles = () => {
       categories: "Hybrid",
     }
     
-    fetch('http://localhost:3000/travels', {
+    fetch('https://travel-ease-server-seven.vercel.app/travels', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

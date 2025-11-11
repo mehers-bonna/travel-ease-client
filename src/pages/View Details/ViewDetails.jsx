@@ -15,7 +15,7 @@ const ViewDetails = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/travels/${id}`, {
+    fetch(`https://travel-ease-server-seven.vercel.app/travels/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`
       }
@@ -31,7 +31,7 @@ const ViewDetails = () => {
   const handleBookNow = () => {
     setLoading(true);
     const { _id, ...rest } = travel;
-    fetch(`http://localhost:3000/bookings`, {
+    fetch(`https://travel-ease-server-seven.vercel.app/bookings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

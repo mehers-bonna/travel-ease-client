@@ -22,7 +22,7 @@ const MyVehicles = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:3000/travels/${id}`, {
+                fetch(`https://travel-ease-server-seven.vercel.app/travels/${id}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const MyVehicles = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/myVehicles?email=${user.email}`, {
+        fetch(`https://travel-ease-server-seven.vercel.app/myVehicles?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }

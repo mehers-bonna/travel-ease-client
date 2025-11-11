@@ -16,7 +16,7 @@ const UpdateVehicle = () => {
 
   useEffect(() => {
      setLoading(true);
-    fetch(`http://localhost:3000/travels/${id}`, {
+    fetch(`https://travel-ease-server-seven.vercel.app/travels/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`
       }
@@ -42,7 +42,7 @@ const UpdateVehicle = () => {
       availability: e.target.availability.value,
     };
 
-    fetch(`http://localhost:3000/travels/${travel._id}`, {
+    fetch(`https://travel-ease-server-seven.vercel.app/travels/${travel._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

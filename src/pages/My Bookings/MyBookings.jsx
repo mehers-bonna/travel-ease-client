@@ -10,7 +10,7 @@ const MyBookings = () => {
     
     
     useEffect(() => {
-            fetch(`http://localhost:3000/myBookings?email=${user.email}`, {
+            fetch(`https://travel-ease-server-seven.vercel.app/myBookings?email=${user.email}`, {
                 headers: {
                 authorization: `Bearer ${user.accessToken}`
             }

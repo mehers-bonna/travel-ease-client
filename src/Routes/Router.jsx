@@ -25,12 +25,12 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element:<Home></Home>,
-                loader: () => fetch('http://localhost:3000/latestVehicles'),
+                loader: () => fetch('https://travel-ease-server-seven.vercel.app/latestVehicles'),
             },
             {
                 path: "/allVehicles",
                 element:<AllVehicles></AllVehicles>,
-                loader: () => fetch('http://localhost:3000/travels'),
+                loader: () => fetch('https://travel-ease-server-seven.vercel.app/travels'),
             },
             {
                 path: "/addVehicles",
