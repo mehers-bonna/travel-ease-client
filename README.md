@@ -1,22 +1,46 @@
-### Website Name: Travel Ease
+# Travel Ease Client
 
+![Travel Ease Screenshot](https://i.ibb.co.com/Kz8HsFMV/travel-Ease-client.png)
 
+## Overview
+Travel Ease Client is a full-stack travel application built with **React, JavaScript, Firebase Authentication, and MongoDB**.  
+It allows users to browse destinations, manage bookings, and interact with personalized content securely.
 
+## Features
+- User authentication with Firebase (sign up, login, logout)
+- Browse travel destinations
+- Booking management
+- Responsive and interactive UI
+- Integration with backend database (MongoDB)
+- Themes Toggle
 
-Live Link: https://reliable-griffin-d18535.netlify.app/
+## Tech Stack
+- **Frontend:** React, JavaScript
+- **Backend / Database:** Firebase Authentication, MongoDB
+- **Styling:** Tailwind Css
+  
+## Dependencies
+- react
+- react-dom
+- firebase
 
+## Live Links
+-Live Link: https://reliable-griffin-d18535.netlify.app/
+-Github Repository: https://github.com/mehers-bonna/travel-ease-client.git
 
+## Installation & Setup
+1. Clone the repository
+```bash
+git clone https://github.com/YOUR_USERNAME/travel-ease-client.git
 
-## Bullet Points to Feature My Website.
+2.Navigate to the project folder
 
-1.Users can browse all available vehicles with detailed information.
+cd travel-ease-client
 
-2.Users can book a vehicle and track their bookings in “My Bookings”.
+3.Install dependencies
 
-3.Owners can add, update, and manage their vehicles in “My Vehicles”.
+npm install
 
-4.Dark/Light theme toggle for a modern and user-friendly UI.
+4.Run the project
 
-5.Fully responsive design for mobile, tablet, and desktop devices.
-
-6.Secure backend with MongoDB database and protected APIs.
+npm start
