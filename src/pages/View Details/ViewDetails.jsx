@@ -91,7 +91,7 @@ const ViewDetails = () => {
 
             <div className="flex gap-3 mt-6">
               <Link
-                to={`/updateVehicle/${travel._id}`}
+                to={`/dashboard/updateVehicle/${travel._id}`}
                 className="btn btn-primary rounded-full bg-error text-white border-0 hover:bg-pink-600"
               >
                 Update Vehicle

@@ -14,80 +14,89 @@ import UpdateVehicle from "../pages/Update Vehicle/UpdateVehicle";
 import FeaturedOwner from "../pages/Featured Owner/FeaturedOwner";
 import AboutTravelEase from "../pages/About TravelEase/AboutTravelEase";
 import ErrorPage from "../pages/Error Page/ErrorPage";
-
-
+import MyProfile from "../pages/My Profile/MyProfile";
+// নতুন ইম্পোর্ট
+import DashboardLayout from "../Layouts/DashboardLayout"; 
+import DashboardHome from "../pages/Dashboard/DashboardHome"; // এই ফাইলটি তৈরি করতে হবে
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element:<MainLayout></MainLayout>,
-        children:[
+        element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage />, // ভালো প্র্যাকটিস
+        children: [
             {
                 path: "/",
-                element:<Home></Home>,
+                element: <Home></Home>,
                 loader: () => fetch('https://travel-ease-server-seven.vercel.app/latestVehicles'),
             },
             {
                 path: "/allVehicles",
-                element:<AllVehicles></AllVehicles>,
+                element: <AllVehicles></AllVehicles>,
                 loader: () => fetch('https://travel-ease-server-seven.vercel.app/travels'),
             },
             {
-                path: "/addVehicles",
-                element:<PrivateRoute>
-                    <AddVehicles></AddVehicles>
-                </PrivateRoute>,
-            },
-            {
-                path: "/myVehicles",
-                element:<PrivateRoute>
-                    <MyVehicles></MyVehicles>
-                </PrivateRoute>,
-            },
-            {
-                path: "/myBookings",
-                element:<PrivateRoute>
-                    <MyBookings></MyBookings>
-                </PrivateRoute>,
-            },
-            {
                 path: "/viewDetails/:id",
-                element:<PrivateRoute>
-                    <ViewDetails></ViewDetails>
-                </PrivateRoute>,
-            },
-            {
-                path: "/updateVehicle/:id",
-                element:<PrivateRoute>
-                    <UpdateVehicle></UpdateVehicle>
-                </PrivateRoute>,
+                element: <PrivateRoute><ViewDetails /></PrivateRoute>,
             },
             {
                 path: "/featuredOwner",
-                element: <FeaturedOwner></FeaturedOwner>,
+                element: <FeaturedOwner />,
             },
             {
                 path: "/aboutTravelEase",
-                element: <AboutTravelEase></AboutTravelEase>,
-            },
-             {
-                path: "*",
-                element: <ErrorPage></ErrorPage>,
+                element: <AboutTravelEase />,
             },
         ]
     },
     {
-        path: '/auth',
-        element: <AuthLayout></AuthLayout>,
+        path: "/auth",
+        element: <AuthLayout />,
         children: [
             {
-                path: 'login',
-                element: <Login></Login>,
+                path: "login",
+                element: <Login />,
             },
             {
-                path: 'register',
-                element: <Register></Register>,
+                path: "register",
+                element: <Register />,
             },
+            { 
+                path: "myProfile", // '/auth/myProfile' হিসেবে কাজ করবে
+                element: <PrivateRoute><MyProfile /></PrivateRoute> 
+            }
         ],
     },
-])
+    // নতুন ড্যাশবোর্ড রাউট স্ট্রাকচার
+    {
+        path: "/dashboard",
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+        children: [
+            {
+                path: "home", // '/dashboard/home'
+                element: <DashboardHome />
+            },
+            {
+                path: "addVehicles", // '/dashboard/addVehicles'
+                element: <AddVehicles />
+            },
+            {
+                path: "myVehicles", // '/dashboard/myVehicles'
+                element: <MyVehicles />
+            },
+            {
+                path: "myBookings", // '/dashboard/myBookings'
+                element: <MyBookings />
+            },
+            {
+                path: "updateVehicle/:id", // '/dashboard/updateVehicle/:id'
+                element: <UpdateVehicle />
+            },
+        ]
+    },
+    // 404 Catch-all Route
+    {
+        path: "*",
+        element: <ErrorPage />,
+    }
+]);

@@ -93,7 +93,7 @@ const MyVehicles = () => {
                         <Link to={`/viewDetails/${vehicle._id}`} className="px-3 py-1 bg-error text-white rounded-full hover:bg-pink-600">
                             View Details
                         </Link>
-                        <Link to={`/updateVehicle/${vehicle._id}`} className="px-3 py-1 bg-error text-white rounded-full hover:bg-pink-600">
+                        <Link to={`/dashboard/updateVehicle/${vehicle._id}`} className="px-3 py-1 bg-error text-white rounded-full hover:bg-pink-600">
                             Update Vehicle
                         </Link>
                         <button onClick={() => handleDelete(vehicle._id)} className="px-3 py-1 bg-error text-white rounded-full hover:bg-pink-600">
