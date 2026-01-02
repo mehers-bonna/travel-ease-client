@@ -28,7 +28,7 @@ const UpdateVehicle = () => {
       setLoading(true);
       try {
         const token = await getIdToken(user);
-        console.log("✅ Firebase token:", token);
+        console.log("Firebase token:", token);
 
         const res = await fetch(`https://travel-ease-server-seven.vercel.app/travels/${id}`, {
           headers: {

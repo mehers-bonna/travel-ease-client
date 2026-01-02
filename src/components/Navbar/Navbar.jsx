@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router'; // 'react-router-dom' use korle oita change kore nite paren
+import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { toast } from 'react-toastify';
 import profileImg from '../../assets/profile.jpg';
@@ -40,12 +40,13 @@ const Navbar = () => {
             <li><NavLink to='/' className={linkStyles}>Home</NavLink></li>
             <li><NavLink to='/allVehicles' className={linkStyles}>All Vehicles</NavLink></li>
             <li><NavLink to='/aboutTravelEase' className={linkStyles}>About Us</NavLink></li>
+            <li><NavLink to='/termsAndConditions' className={linkStyles}>Terms/Conditions</NavLink></li>
         </>
     );
 
     return (
         <div className="sticky top-0 z-50 w-full bg-base-100/80 backdrop-blur-md shadow-sm">
-            <div className="navbar w-11/12 mx-auto px-0">
+            <div className="navbar w-10/12 mx-auto px-0">
                 <div className="navbar-start">
                     {/* Mobile Dropdown */}
                     <div className="dropdown">

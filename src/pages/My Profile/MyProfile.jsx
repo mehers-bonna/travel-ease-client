@@ -14,13 +14,11 @@ const MyProfile = () => {
         if (user?.email) {
             const fetchUserStats = async () => {
                 try {
-                    // Firebase Token সংগ্রহ (ব্যাকএন্ড verifyToken এর জন্য)
                     const token = await user.getIdToken();
                     const config = {
                         headers: { Authorization: `Bearer ${token}` }
                     };
 
-                    // My Vehicles এবং My Bookings ডেটা ফেচ করা
                     const [vehiclesRes, bookingsRes] = await Promise.all([
                         axios.get(`https://travel-ease-server-seven.vercel.app/myVehicles?email=${user.email}`, config),
                         axios.get(`https://travel-ease-server-seven.vercel.app/myBookings?email=${user.email}`, config)
@@ -85,7 +83,6 @@ const MyProfile = () => {
                     </div>
                 </div>
 
-                {/* ডাইনামিক স্ট্যাট সেকশন */}
                 <div className="mt-10 grid grid-cols-3 gap-4 text-center">
                     <div className="p-4 bg-gray-50 dark:bg-slate-700 rounded-2xl border border-gray-100 dark:border-gray-600">
                         <span className="block text-2xl font-bold text-error">

@@ -3,7 +3,7 @@ import { NavLink, Outlet, Link } from "react-router";
 import { FaHome, FaPlusCircle, FaCar, FaBookmark, FaUserCircle, FaArrowLeft, FaBars, FaTimes } from "react-icons/fa";
 
 const DashboardLayout = () => {
-    const [isOpen, setIsOpen] = useState(false); // মোবাইল মেনু কন্ট্রোল করার জন্য
+    const [isOpen, setIsOpen] = useState(false);
 
     const activeClass = "flex items-center gap-3 p-3 rounded-lg bg-error text-white font-semibold transition-all";
     const normalClass = "flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-600 dark:text-gray-300 transition-all";
@@ -72,7 +72,7 @@ const DashboardLayout = () => {
                         <FaBars />
                     </button>
                     <span className="font-bold text-error text-lg">TravelEase Dashboard</span>
-                    <div className="w-8"></div> {/* Alignment spacer */}
+                    <div className="w-8"></div>
                 </header>
                 
                 <main className="p-4 md:p-8 lg:p-12">

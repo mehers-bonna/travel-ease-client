@@ -15,15 +15,15 @@ import FeaturedOwner from "../pages/Featured Owner/FeaturedOwner";
 import AboutTravelEase from "../pages/About TravelEase/AboutTravelEase";
 import ErrorPage from "../pages/Error Page/ErrorPage";
 import MyProfile from "../pages/My Profile/MyProfile";
-// নতুন ইম্পোর্ট
 import DashboardLayout from "../Layouts/DashboardLayout"; 
-import DashboardHome from "../pages/Dashboard/DashboardHome"; // এই ফাইলটি তৈরি করতে হবে
+import DashboardHome from "../pages/Dashboard/DashboardHome";
+import TermsAndConditions from "../pages/Terms And Conditions/TermsAndConditions";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement: <ErrorPage />, // ভালো প্র্যাকটিস
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: "/",
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/viewDetails/:id",
-                element: <PrivateRoute><ViewDetails /></PrivateRoute>,
+                element: <ViewDetails />,
             },
             {
                 path: "/featuredOwner",
@@ -46,6 +46,10 @@ export const router = createBrowserRouter([
             {
                 path: "/aboutTravelEase",
                 element: <AboutTravelEase />,
+            },
+            {
+                path: "/termsAndConditions",
+                element: <TermsAndConditions />,
             },
         ]
     },
@@ -62,34 +66,34 @@ export const router = createBrowserRouter([
                 element: <Register />,
             },
             { 
-                path: "myProfile", // '/auth/myProfile' হিসেবে কাজ করবে
+                path: "myProfile", 
                 element: <PrivateRoute><MyProfile /></PrivateRoute> 
             }
         ],
     },
-    // নতুন ড্যাশবোর্ড রাউট স্ট্রাকচার
+    // Dashboard route
     {
         path: "/dashboard",
         element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
-                path: "home", // '/dashboard/home'
+                path: "home", 
                 element: <DashboardHome />
             },
             {
-                path: "addVehicles", // '/dashboard/addVehicles'
+                path: "addVehicles", 
                 element: <AddVehicles />
             },
             {
-                path: "myVehicles", // '/dashboard/myVehicles'
+                path: "myVehicles", 
                 element: <MyVehicles />
             },
             {
-                path: "myBookings", // '/dashboard/myBookings'
+                path: "myBookings", 
                 element: <MyBookings />
             },
             {
-                path: "updateVehicle/:id", // '/dashboard/updateVehicle/:id'
+                path: "updateVehicle/:id", 
                 element: <UpdateVehicle />
             },
         ]

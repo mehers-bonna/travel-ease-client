@@ -27,22 +27,22 @@ const AddVehicles = () => {
       createdAt: new Date(),
       categories: "Hybrid",
     }
-    
+
     fetch('https://travel-ease-server-seven.vercel.app/travels', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${user.accessToken}`
-        },
-        body: JSON.stringify(formData)
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${user.accessToken}`
+      },
+      body: JSON.stringify(formData)
     })
-    .then(res => res.json())
-    .then(data => {
+      .then(res => res.json())
+      .then(data => {
         toast.success("Successfully added!")
         navigate("/")
-    })
-    .catch(err => { console.log(err) })
-    .finally(() => { setLoading(false); });
+      })
+      .catch(err => { console.log(err) })
+      .finally(() => { setLoading(false); });
   }
 
   if (loading) return <Spinner />;
@@ -50,7 +50,7 @@ const AddVehicles = () => {
   return (
     <div className="max-w-4xl mx-auto my-10 px-4">
       <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
-        
+
         {/* Header Section */}
         <div className="bg-gradient-to-r from-error to-pink-500 p-8 text-center">
           <h2 className="text-3xl font-extrabold text-white">Add New Vehicle</h2>
@@ -58,10 +58,10 @@ const AddVehicles = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="p-8 md:p-12 space-y-6">
-          
+
           {/* Two Column Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
+
             {/* Vehicle Name */}
             <div className="form-control">
               <label className="label text-sm font-bold text-gray-600 dark:text-gray-300">Vehicle Name</label>
@@ -82,11 +82,20 @@ const AddVehicles = () => {
               <label className="label text-sm font-bold text-gray-600 dark:text-gray-300">Category</label>
               <select name="category" defaultValue="" required className="select select-bordered w-full rounded-xl">
                 <option value="" disabled>Select category</option>
-                <option value="Yamaha Bike">Yamaha Bike</option>
-                <option value="Honda Bike">Honda Bike</option>
+                <option value="Phoenix Bicycle">Phoenix Bicycle</option>
+                <option value="Bicycle">Bicycle</option>
                 <option value="Toyota Corolla">Toyota Corolla</option>
                 <option value="Mini Bus">Mini Bus</option>
-                {/* অন্যান্য অপশন */}
+                <option value="Helicopter">Helicopter</option>
+                <option value="Scooter">Scooter</option>
+                <option value="Truck">Truck</option>
+                <option value="Pickup">Pickup</option>
+                <option value="Van">Van</option>
+                <option value="CNG/Auto">CNG/Auto</option>
+                <option value="Electric Car">Electric Car</option>
+                <option value="Bike">Bike</option>
+                <option value="Motorcycle">Motorcycle</option>
+                <option value="Sedan">Sedan</option>
               </select>
             </div>
 
@@ -119,12 +128,12 @@ const AddVehicles = () => {
             </div>
           </div>
 
-          {/* User Email (Read Only recommended, but keeping as input per your code) */}
+          {/* User Email */}
           <div className="form-control">
             <label className="label text-sm font-bold text-gray-600 dark:text-gray-300">User Email</label>
             <div className="relative">
-                <span className="absolute inset-y-0 left-4 flex items-center text-gray-400"><FaEnvelope /></span>
-                <input name="userEmail" type="email" defaultValue={user?.email} required className="input input-bordered w-full pl-12 rounded-xl bg-gray-50 cursor-not-allowed" />
+              <span className="absolute inset-y-0 left-4 flex items-center text-gray-400"><FaEnvelope /></span>
+              <input name="userEmail" type="email" defaultValue={user?.email} required className="input input-bordered w-full pl-12 rounded-xl bg-gray-50 cursor-not-allowed" />
             </div>
           </div>
 
@@ -132,8 +141,8 @@ const AddVehicles = () => {
           <div className="form-control">
             <label className="label text-sm font-bold text-gray-600 dark:text-gray-300">Cover Image URL</label>
             <div className="relative">
-                <span className="absolute inset-y-0 left-4 flex items-center text-gray-400"><FaImage /></span>
-                <input name="coverImage" type="url" placeholder="https://example.com/image.jpg" required className="input input-bordered w-full pl-12 rounded-xl" />
+              <span className="absolute inset-y-0 left-4 flex items-center text-gray-400"><FaImage /></span>
+              <input name="coverImage" type="url" placeholder="https://example.com/image.jpg" required className="input input-bordered w-full pl-12 rounded-xl" />
             </div>
           </div>
 
@@ -141,8 +150,8 @@ const AddVehicles = () => {
           <div className="form-control">
             <label className="label text-sm font-bold text-gray-600 dark:text-gray-300">Description</label>
             <div className="relative">
-                <span className="absolute top-4 left-4 text-gray-400"><FaInfoCircle /></span>
-                <textarea name="description" placeholder="Write something about the vehicle..." required className="textarea textarea-bordered w-full pl-12 rounded-2xl h-32 focus:ring-2 focus:ring-error"></textarea>
+              <span className="absolute top-4 left-4 text-gray-400"><FaInfoCircle /></span>
+              <textarea name="description" placeholder="Write something about the vehicle..." required className="textarea textarea-bordered w-full pl-12 rounded-2xl h-32 focus:ring-2 focus:ring-error"></textarea>
             </div>
           </div>
 

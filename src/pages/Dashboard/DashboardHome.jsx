@@ -13,10 +13,8 @@ const DashboardHome = () => {
 
     useEffect(() => {
         if (user?.email) {
-            // ব্যাকএন্ডে পরিবর্তন না করে সরাসরি ফ্রন্টএন্ড থেকে দুটি কল করছি
             const fetchStats = async () => {
                 try {
-                    // Firebase Token সংগ্রহ (আপনার verifyToken মিডলওয়্যার এর জন্য প্রয়োজন)
                     const token = await user.getIdToken();
                     const config = {
                         headers: { Authorization: `Bearer ${token}` }
