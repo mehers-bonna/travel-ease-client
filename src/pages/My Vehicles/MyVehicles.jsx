@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import Spinner from '../../components/Spinner/Spinner';
 
@@ -8,7 +8,6 @@ const MyVehicles = () => {
     const { user } = use(AuthContext);
     const [vehicles, setVehicles] = useState([]);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -21,31 +20,29 @@ const MyVehicles = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-
                 fetch(`https://travel-ease-server-seven.vercel.app/travels/${id}`, {
                     method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
                 })
-                    .then(res => res.json())
-                    .then(data => {
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
                         Swal.fire({
                             title: "Deleted!",
-                            text: "Your file has been deleted.",
+                            text: "Your vehicle has been deleted.",
                             icon: "success"
                         });
-                        console.log(data)
-                        navigate('/allVehicles')
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
 
+                        const remainingVehicles = vehicles.filter(v => v._id !== id);
+                        setVehicles(remainingVehicles);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    Swal.fire("Error!", "Something went wrong.", "error");
+                });
             }
         });
     }
-
 
     useEffect(() => {
         fetch(`https://travel-ease-server-seven.vercel.app/myVehicles?email=${user.email}`, {
@@ -53,55 +50,69 @@ const MyVehicles = () => {
                 authorization: `Bearer ${user.accessToken}`
             }
         })
-            .then(res => res.json())
-            .then(data => {
-                setVehicles(data)
-                setLoading(false)
-            })
-            .catch(err => {
-                console.log(err);
-                setLoading(false);
-            });
-    }, [user])
+        .then(res => res.json())
+        .then(data => {
+            setVehicles(data);
+            setLoading(false);
+        })
+        .catch(err => {
+            console.log(err);
+            setLoading(false);
+        });
+    }, [user]);
 
-    if (loading) {
-        return <Spinner />;
-    }
+    if (loading) return <Spinner />;
+
     return (
-        <div>
-            <h1 className='text-2xl text-center text-error font-bold'>My Vehicles</h1>
-            {vehicles.map(vehicle => (
-                <div
-                    key={vehicle._id}
-                    className="flex flex-col md:flex-row items-center md:items-center  justify-between p-4 bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 rounded-xl w-11/12 mx-auto my-4"
-                >
-                    {/* Left side Image */}
-                    <div className="flex items-center justify-center mb-4 md:mb-0">
-                        <img
-                            src={vehicle.coverImage}
-                            alt={vehicle.vehicleName}
-                            className="w-24 h-24 md:w-24 md:h-24 object-cover rounded-lg mr-4"
-                        />
-                        <div className='flex flex-col items-center'>
-                            <h2 className="text-lg font-semibold">{vehicle.vehicleName}</h2>
-                            <p className="text-error"><span className='text-black font-bold'>Owner Name: </span>{vehicle.owner}</p>
+        <div className="py-10">
+            <h1 className='text-3xl text-center text-error font-extrabold mb-8 uppercase tracking-wider'>
+                My Vehicles
+            </h1>
+            
+            {vehicles.length === 0 ? (
+                <div className="text-center py-20">
+                    <p className="text-gray-500 text-xl">You haven't added any vehicles yet.</p>
+                    <Link to="/dashboard/addVehicles" className="btn btn-error mt-4 text-white">Add Now</Link>
+                </div>
+            ) : (
+                vehicles.map(vehicle => (
+                    <div
+                        key={vehicle._id}
+                        className="flex flex-col md:flex-row items-center justify-between p-5 bg-white dark:bg-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 rounded-2xl w-11/12 lg:w-3/4 mx-auto my-6 border border-gray-100 dark:border-gray-700"
+                    >
+                        {/* Left side Content */}
+                        <div className="flex items-center w-full md:w-auto">
+                            <img
+                                src={vehicle.coverImage}
+                                alt={vehicle.vehicleName}
+                                className="w-20 h-20 md:w-24 md:h-24 object-cover rounded-xl shadow-sm mr-6"
+                            />
+                            <div>
+                                <h2 className="text-xl font-bold text-gray-800 dark:text-white">{vehicle.vehicleName}</h2>
+                                <p className="text-sm text-gray-500 mt-1">
+                                    <span className='font-semibold text-error'>Category:</span> {vehicle.category}
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                    <span className='font-semibold text-error'>Price:</span> ${vehicle.pricePerDay}/day
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Right side Action Buttons */}
+                        <div className="flex flex-wrap gap-2 mt-6 md:mt-0 justify-center">
+                            <Link to={`/viewDetails/${vehicle._id}`} className="btn btn-sm btn-outline btn-error rounded-full">
+                                View
+                            </Link>
+                            <Link to={`/dashboard/updateVehicle/${vehicle._id}`} className="btn btn-sm btn-error text-white rounded-full">
+                                Update
+                            </Link>
+                            <button onClick={() => handleDelete(vehicle._id)} className="btn btn-sm bg-gray-200 hover:bg-red-100 hover:text-red-600 border-0 rounded-full text-gray-700">
+                                Delete
+                            </button>
                         </div>
                     </div>
-
-                    {/* Right side Button */}
-                    <div className="flex flex-col md:flex-row justify-center md:justify-end items-center md:items-start space-y-2 md:space-y-0 md:space-x-2">
-                        <Link to={`/viewDetails/${vehicle._id}`} className="px-3 py-1 bg-error text-white rounded-full hover:bg-pink-600">
-                            View Details
-                        </Link>
-                        <Link to={`/dashboard/updateVehicle/${vehicle._id}`} className="px-3 py-1 bg-error text-white rounded-full hover:bg-pink-600">
-                            Update Vehicle
-                        </Link>
-                        <button onClick={() => handleDelete(vehicle._id)} className="px-3 py-1 bg-error text-white rounded-full hover:bg-pink-600">
-                            Delete
-                        </button>
-                    </div>
-                </div>
-            ))}
+                ))
+            )}
         </div>
     );
 };

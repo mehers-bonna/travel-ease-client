@@ -54,7 +54,7 @@ const MyBookings = () => {
                     <div className="flex flex-col justify-between items-center md:items-center space-y-4 mt-4 md:mt-0">
                         <h2 className="text-error "><span className='font-bold text-black'>Booked By: </span>{vehicle.userEmail}</h2>
                         <Link to='/' className="px-3 py-1 bg-error text-white rounded-full hover:bg-pink-600">
-                            Go Back
+                            Go Home
                         </Link>
                     </div>
                 </div>

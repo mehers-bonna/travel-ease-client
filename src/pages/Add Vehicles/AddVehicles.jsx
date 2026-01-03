@@ -39,7 +39,7 @@ const AddVehicles = () => {
       .then(res => res.json())
       .then(data => {
         toast.success("Successfully added!")
-        navigate("/")
+        navigate("/dashboard/myVehicles")
       })
       .catch(err => { console.log(err) })
       .finally(() => { setLoading(false); });
