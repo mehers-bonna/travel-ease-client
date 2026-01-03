@@ -25,7 +25,7 @@ It allows users to browse destinations, manage bookings, and interact with perso
 - firebase
 
 ## Live Links
--Live Link: https://reliable-griffin-d18535.netlify.app/
+-Live Link: https://visionary-babka-96d985.netlify.app/
 -Github Repository: https://github.com/mehers-bonna/travel-ease-client.git
 
 ## Installation & Setup
